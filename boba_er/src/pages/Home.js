@@ -9,23 +9,21 @@ import chat from '../img/chat.png';
 import quality from '../img/quality.png';
 import rating from '../img/rating.png';
 
-import { Button, Navbar, Section, Container, Hero } from 'react-bulma-components';
+import { Button, Navbar, Section, Container, Hero, Level } from 'react-bulma-components';
 const Home = () => {
     return (
 
     
     <div className="Home">
       <div className="Main">
-
-
-
             <Section class="fullheight">
-            <Hero size="large">
+            <Hero size="large" id="has-bg-img">
+            <img class='is-bg-img is-transparent' src={background1} alt='background1'/>
     
             <Hero.Body>
-              <Container fluid breakpoint="widescreen" class="hero-image">
+              <Container fluid breakpoint="widescreen">
                 <div class="columns">
-                  <div class="column"> 
+                  <div class="column h1"> 
                  
                     <h1 class="title is-1">
                     Hey Boba lovers:
@@ -38,8 +36,8 @@ const Home = () => {
                 </div>
               </Container>
               </Hero.Body>
-            </Hero>
-              </Section>
+              </Hero>
+            </Section>
             
               <Section>
               <Container>
@@ -76,28 +74,26 @@ const Home = () => {
 
             </Section>
 
-            <Section >
-            <Hero size="fullheight">
-            <Hero.Header />
-            <Hero.Body>
-              <Container breakpoint="widescreen" size="fullheight" class="primary-background">
-                <div class="columns">
-                <div class="column is-6">
-                  <img src={background3} ></img>
-                </div>
-                  <div class="column is-6 vertical-center">
-                  <figure class="image is-64x64">
-                  <img src={notebook}></img>
-                  </figure>
-                  
-                  <h1 class="h1 title primary" >Make every boba tea you drink memorable. </h1>
-                  <p>Keep a journal of what boba tea(s) you drink every day, what toppings you got, the sugar and ice level you asked for. Every boba tea is special. </p>  
-                    </div>
+            <Section>
+              {/* <Hero size="fullheight">
+              <Hero.Body> */}
+                <Container breakpoint="widescreen" size="fullheight" class="primary-background">
+                  <div class="columns">
+                  <div class="column is-6">
+                    <img src={background3} ></img>
+                  </div>
+                    <div class="column is-6 vertical-center">
+                    <figure class="image is-64x64">
+                    <img src={notebook}></img>
+                    </figure>
+                    
+                    <h1 class="h1 title">Make every boba tea you drink memorable. </h1>
+                    <p>Keep a journal of what boba tea(s) you drink every day, what toppings you got, the sugar and ice level you asked for. Every boba tea is special. </p>  
+                      </div>
               </div>
               </Container>
-              </Hero.Body>
-              <Hero.Footer />
-              </Hero> 
+              {/* </Hero.Body>
+              </Hero>  */}
             </Section>
           </div>
         </div>
