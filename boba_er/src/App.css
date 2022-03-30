@@ -1,16 +1,18 @@
+.primary { color: #F5E0DA;}
+
+.primary-background {
+  background-color: #F5E0DA;
+  height: 100%;
+  width: 100%;
+}
 .App {
   text-align: center;
+
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -26,6 +28,28 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.h1 {
+  font-family: 'Crimson Pro', serif;
+}
+
+.hero-image {
+  background-image: url('/img/background1.png');
+  background: url('/img/background1.png');
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-size:  cover;
+
+  font-family: 'Crimson Pro', serif;
+  height: 100%;
+  width: 100%;
+}
+
+.center-container {
+  display: flex;
+  align-items: center;
 }
 
 @keyframes App-logo-spin {

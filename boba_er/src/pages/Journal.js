@@ -2,7 +2,12 @@ import React from 'react';
   
 const Journal = () => {
   return (
-    <h1>You can write your blogs!</h1>
+   
+
+    <div>
+      <h1>Journal</h1>
+    </div>
+
   );
 };
   
