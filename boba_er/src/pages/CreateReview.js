@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Form, Card, Button, Container } from 'react-bulma-components';
 
@@ -14,9 +13,9 @@ function CreateReview({isAuth}) {
     // };
 
 return (
-    <div className="Reviews">
+    <div className="createReview primary-background">
       <Container>
-        <Card>
+        <Card class="box is-centered">
           <Card.Content>
             <h1>Add a review to your boba</h1>
             <p>Name of the drink</p>
@@ -38,7 +37,7 @@ return (
           <Button>Submit</Button>
         </Card>
         </Container>
-        <DatePicker selected={startDate} startDate={startDate} endDate={endDate} selectsRange selectsDisabledDaysInRange inline/>
+      
     </div>
 );
 }

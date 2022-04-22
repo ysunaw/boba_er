@@ -9,6 +9,7 @@ import CreatePost from "./pages/CreatePost";
 import Home from './pages/Home';
 import Journal from './pages/Journal';
 import CreateReview from './pages/CreateReview';
+import Review from './pages/Review';
 
 import { useState } from "react";
 import { signOut } from "firebase/auth";
@@ -47,6 +48,8 @@ function App() {
             <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
             <Route path="/createreview" element={<CreateReview isAuth={isAuth} />} />
             <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+            <Route path="/review" element={<Review isAuth={isAuth} />} />
+
 
         </Routes>
 

@@ -45,7 +45,7 @@ function Header(){
         <div id="navbarMenu" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
           <Navbar.Container>
             <Navbar.Item href="Journal">JOURNAL</Navbar.Item>
-            <Navbar.Item href="Recommenation">RECOMMENDATION</Navbar.Item>
+            <Navbar.Item href="Review">REVIEW</Navbar.Item>
             <Navbar.Item href="Blogs">ABOUT</Navbar.Item>
           </Navbar.Container>
           <Navbar.Container class="navbar-end">

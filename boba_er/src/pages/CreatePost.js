@@ -27,7 +27,7 @@ function CreatePost({ isAuth }) {
 
   return (
     <div className="createPostPage">
-      <div className="box is-centered primary-background">
+
         <h1>ADD A BOBA ENTRY TO YOUR JOURNAL</h1>
 
         <div className="inputGp">
@@ -49,7 +49,6 @@ function CreatePost({ isAuth }) {
           />
         </div>
         <button onClick={createPost}> Submit Post</button>
-      </div>
     </div>
   );
 }
