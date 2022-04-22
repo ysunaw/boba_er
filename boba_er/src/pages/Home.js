@@ -1,15 +1,13 @@
 import React from "react"; 
 import 'bulma/css/bulma.min.css';
 import background1 from '../img/background1.png';
-import background2 from '../img/background2.jpg';
 import background3 from '../img/background3.jpg';
 
 import notebook from '../img/notebook.png';
 import chat from '../img/chat.png';
-import quality from '../img/quality.png';
 import rating from '../img/rating.png';
 
-import { Button, Navbar, Section, Container, Hero, Level } from 'react-bulma-components';
+import { Section, Container, Hero } from 'react-bulma-components';
 const Home = () => {
     return (
 
