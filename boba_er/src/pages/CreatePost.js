@@ -27,8 +27,9 @@ function CreatePost({ isAuth }) {
 
   return (
     <div className="createPostPage">
-      <div className="cpContainer">
-        <h1>Create A Post</h1>
+      <div className="box is-centered primary-background">
+        <h1>ADD A BOBA ENTRY TO YOUR JOURNAL</h1>
+
         <div className="inputGp">
           <label> Title:</label>
           <input
