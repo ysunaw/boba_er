@@ -31,6 +31,7 @@ function CreatePost({ isAuth }) {
       iceLevel,
       topping,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      timestamp: Date.now(),
     });
     navigate("/Journal");
   };
