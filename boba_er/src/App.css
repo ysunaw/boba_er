@@ -7,7 +7,6 @@
 }
 .App {
   text-align: center;
-
 }
 
 
@@ -82,4 +81,9 @@
   padding: 3rem;
   justify-content: center;
   align-items: center;
+}
+
+.journal {
+  padding: 3rem; 
+  flex-direction: column
 }

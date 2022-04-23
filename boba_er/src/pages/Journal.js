@@ -4,12 +4,14 @@ import React, { useState, useEffect } from "react";
 import { getDocs, addDoc, collection, deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
-import { Columns, Card, Container } from 'react-bulma-components';
-import loc from '../img/dir.png';
+import { Columns, Card, Container, Image } from 'react-bulma-components';
+import loc from '../img/Location.png';
 import rev from '../img/rev.png';
-import sug from '../img/dir.png';
-import ice from '../img/dir.png';
-import dir from '../img/dir.png';
+import sug from '../img/Sweetener.png';
+import ice from '../img/Cooling.png';
+import dri from '../img/Cup.png';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"
 
 function Journal({ isAuth }) {
   const [title, setTitle] = useState("");
@@ -44,32 +46,42 @@ function Journal({ isAuth }) {
   }, []);
 
   return (
-    <div class='primary-background'>
+    <div class='primary-background journal'>
       <Container>
-        <Card>
-          <Columns>
-            <Columns.Column className="is-1">
-              <p class="date">13</p>
-              <p class="month">Mar</p>
-            </Columns.Column>
+      <Columns>
+        <Columns.Column className="is-two-thirds" >
+          <Card class="box">
+            <Columns>
+              <Columns.Column className="is-2">
+                <p class="date">13</p>
+                <p class="month">Mar</p>
+              </Columns.Column>
 
-            <Columns.Column className="is-1">
-              <p>LOCATION</p>
-              <p>DRINK</p>
-              <p>SUGAR</p>
-              <p>ICE</p>
-              <p>TOPPING</p>
-              <p>REVIEW</p>
-            </Columns.Column>
-            <Columns.Column>
-              <p><img src={loc}></img> sample location</p>
-              <p><img src={dri}></img> sample drink</p>
-              <p><img src={sug}></img> sample sugar</p>
-              <p><img src={ice}></img> sample ice</p>
-              <p><img src={rev}></img> sample review</p>
-            </Columns.Column>
-          </Columns>
-        </Card>
+              <Columns.Column className="is-2">
+                <p>LOCATION</p>
+                <p>DRINK</p>
+                <p>SUGAR</p>
+                <p>ICE</p>
+                <p>REVIEW</p>
+              </Columns.Column>
+              <Columns.Column>
+                <p><img width="16" height="16" src={loc}></img> sample location</p>
+                <p><img width="16" height="16" src={dri}></img> sample drink</p>
+                <p><img width="16" height="16" src={sug}></img> sample sugar</p>
+                <p><img width="16" height="16" src={ice}></img> sample ice</p>
+                <p><img width="16" height="16" src={rev}></img> sample review</p>
+              </Columns.Column>
+              </Columns>
+          </Card>
+        </Columns.Column>
+
+        <Columns.Column>
+        <DatePicker inline></DatePicker>
+        </Columns.Column>
+      </Columns>
+      </Container>
+      <Container> 
+            
         {/* <Columns>
           <Columns.Column className="is-one-fifth">
             <p className="bd-notification is-info">13</p>
@@ -87,7 +99,7 @@ function Journal({ isAuth }) {
             </Columns>
             
           </Columns.Column>
-          <
+          
         </Columns> */}
       </Container>
     </div>
