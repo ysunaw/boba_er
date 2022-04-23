@@ -21,6 +21,7 @@ function Header(){
     };
 
     return (
+      
         <Navbar>
         <Navbar.Brand>
           <Navbar.Item renderAs="a" href="/">
