@@ -44,7 +44,7 @@ function App() {
       
         <Routes>
             <Route exact path='/' element = {<Home />} />
-            <Route path='/Journal' element={<Journal />} />
+            <Route path='/Journal' element={<Journal isAuth={isAuth}/>} />
             <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
             <Route path="/createreview" element={<CreateReview isAuth={isAuth} />} />
             <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
