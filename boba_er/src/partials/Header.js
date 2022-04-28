@@ -20,6 +20,10 @@ function Header(){
       });
     };
 
+    const createEntry = () => {
+        window.location.href = "/createpost";
+    }
+
     return (
       
         <Navbar>
@@ -56,7 +60,10 @@ function Header(){
                 <Button color="is-light">LOG IN OR SIGN UP</Button>
                 </Link>
               ) : (
-                <Button color="is-light"onClick={signUserOut}>Log Out</Button>
+                <div>
+                <Button color="is-light"onClick={signUserOut}>LOG OUT</Button>
+                <Button color="primary" onClick={createEntry}>CREATE A NEW ENTRY</Button>
+                </div>
               )}
               </Navbar.Item>
           </Navbar.Container>
