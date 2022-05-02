@@ -1,16 +1,18 @@
 import React from 'react';
 import { auth, provider} from '../firebase-config'
-import {signInWithPopup} from 'firebase/auth';
+import {applyActionCode, signInWithPopup} from 'firebase/auth';
 import { useNavigate} from "react-router-dom";
 import GoogleButton from 'react-google-button';
 import logo from '../img/bobaer-logo.svg';
 
-function Login({ setIsAuth}) {
 
+function Login({ setIsAuth}) {
+ 
   let navigate = useNavigate();
   
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
+      
       localStorage.setItem("isAuth", true);
        setIsAuth(true); 
        navigate("/Journal");

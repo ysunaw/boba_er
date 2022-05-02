@@ -3,9 +3,9 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Form, Card, Button, Container, Icon, Columns } from 'react-bulma-components';
-import Cooling from '../img/Cooling.png';
 
 function CreatePost({ isAuth }) {
+
   const [bobaStore, setBobaStore] = useState("");
   const [drinkName, setDrinkName] = useState("");
   const [sugarLevel, setSugarLevel] = useState("");

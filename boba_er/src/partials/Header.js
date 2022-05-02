@@ -4,26 +4,30 @@ import logo from '../img/bobaer-logo.svg';
 import { Button, Navbar, Section } from 'react-bulma-components';
 import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import { useState } from "react";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase-config";
-
+import { useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged} from "firebase/auth";
 
 function Header(){
     const [isActive, setisActive] = React.useState(false);
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+    const auth = getAuth();
+    let navigate = useNavigate();
 
-    const signUserOut = () => {
-      signOut(auth).then(() => {
-        localStorage.clear();
-        setIsAuth(false);
-        window.location.pathname = "/login";
-      });
-    };
-
+    
     const createEntry = () => {
         window.location.href = "/createpost";
     }
-
+    // get user display name and other information
+    const [currentUser, setCurrentUser] = useState();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setCurrentUser(user);
+            const uid = user.uid;
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
     return (
       
         <Navbar>
@@ -54,19 +58,22 @@ function Header(){
             <Navbar.Item href="Blogs">ABOUT</Navbar.Item>
           </Navbar.Container>
           <Navbar.Container class="navbar-end">
-              <Navbar.Item>
+              
               {!isAuth ? (
+                <Navbar.Item>
                 <Link to="Login">
                 <Button color="is-light">LOG IN OR SIGN UP</Button>
                 </Link>
+                </Navbar.Item>
               ) : (
-                <div>
-                <Button color="is-light"onClick={signUserOut}>LOG OUT</Button>
-                <Button color="primary" onClick={createEntry}>CREATE A NEW ENTRY</Button>
-                </div>
+                <><Navbar.Item href="User">
+                  {currentUser && <p>{currentUser.displayName}</p>}
+                </Navbar.Item><Navbar.Item>
+                    {/* <Button color="is-light"onClick={signUserOut}>LOG OUT</Button> */}
+                    <Button color="primary" onClick={createEntry}>CREATE AN ENTRY</Button>
+                  </Navbar.Item></>
               )}
-              </Navbar.Item>
-          </Navbar.Container>
+              </Navbar.Container>
         </div>
       </Navbar>
     );
