@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { getDocs, addDoc, collection, deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
@@ -23,24 +21,42 @@ function Journal({ isAuth }) {
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
-  });
+  }, []);
 
   useEffect(() => {
     if (!isAuth) {
       navigate("/login");
     }
   }, []);
+
+  const [startDate, setStartDate] = useState(new Date());
+  const dbDates = {};
+  postLists.map((post) => {
+    const postTime = new Date(post.timestamp);
+    dbDates[postTime.getFullYear()+'/'+postTime.getMonth()+'/'+postTime.getDate()] = 1;
+  })
+  const enableDate = (date) => {
+    const day = date.getDate();
+    const month =  date.getMonth();
+    const year = date.getFullYear();
+    return year+'/'+month+'/'+day in dbDates;
+  };
+
   return (
     <div>
       <div class='primary-background journal'>
         <Container>
           <Columns>
           <Columns.Column className="is-two-thirds" >
-          <Card class="box">
+            {postLists.map((post) => {
+              const postTime = new Date(post.timestamp);
+              return (
+                
+                  <Card class="box">
                     <Columns>
                       <Columns.Column className="is-2 date-indicator">
-                        <p class="date">13</p>
-                        <p class="month">Mar</p>
+                        <p class="date">{postTime.getDate()}</p>
+                        <p class="month">{postTime.toLocaleString('en-US', {month: 'short'})}</p>
                       </Columns.Column>
 
                       <Columns.Column className="is-2 boba-card">
@@ -51,32 +67,6 @@ function Journal({ isAuth }) {
                         <p>REVIEW</p>
                       </Columns.Column>
                       <Columns.Column className="boba-card">
-                        <p><img width="16" height="16" src={loc}></img>Sample store</p>
-                        <p><img width="16" height="16" src={dri}></img> sample drink</p>
-                        <p><img width="16" height="16" src={sug}></img>sample sugar level</p>
-                        <p><img width="16" height="16" src={ice}></img> sample ice level</p>
-                        <p><img width="16" height="16" src={rev}></img> demo review</p>
-                      </Columns.Column>
-                    </Columns>
-                  </Card>
-            {postLists.map((post) => {
-              return (
-                
-                  <Card class="box">
-                    <Columns>
-                      <Columns.Column className="is-2">
-                        <p class="date">13</p>
-                        <p class="month">Mar</p>
-                      </Columns.Column>
-
-                      <Columns.Column className="is-2">
-                        <p>LOCATION</p>
-                        <p>DRINK</p>
-                        <p>SUGAR</p>
-                        <p>ICE</p>
-                        <p>REVIEW</p>
-                      </Columns.Column>
-                      <Columns.Column>
                         <p><img width="16" height="16" src={loc}></img> {post.bobaStore}</p>
                         <p><img width="16" height="16" src={dri}></img> {post.drinkName}</p>
                         <p><img width="16" height="16" src={sug}></img> {post.sugarLevel}</p>
@@ -90,12 +80,18 @@ function Journal({ isAuth }) {
             })}
             </Columns.Column>
             <Columns.Column>
-              <DatePicker inline></DatePicker>
+            <DatePicker
+              // todayButton="Today"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              maxDate={new Date()}
+              filterDate={enableDate}
+              inline
+            />
             </Columns.Column>
           </Columns>
         </Container>
       </div>
-      );
 
 
     </div>
