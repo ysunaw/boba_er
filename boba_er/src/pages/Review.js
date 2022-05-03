@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getDocs, addDoc, collection, deleteDoc, doc } from "firebase/firestore";
+import { getDocs, addDoc, collection, deleteDoc, doc, query, orderBy } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Columns, Card, Container } from 'react-bulma-components';
@@ -12,7 +12,7 @@ import "react-datepicker/dist/react-datepicker.css"
   
 const Review = (isAuth) => {
   const [postLists, setPostList] = useState([]);
-  const postsCollectionRef = collection(db, "bobaReviews");
+  const postsCollectionRef = query(collection(db, "bobaReviews"),orderBy("timestamp", "desc"));
   let navigate = useNavigate();
   useEffect(() => {
     const getPosts = async () => {

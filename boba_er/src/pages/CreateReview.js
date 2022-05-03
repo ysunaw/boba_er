@@ -19,6 +19,7 @@ function CreateReview({isAuth}) {
       rating,
       comment,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      timestamp: Date.now(),
     });
     navigate("/journal");
   };

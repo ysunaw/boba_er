@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getDocs, addDoc, collection, deleteDoc, doc } from "firebase/firestore";
+import { getDocs, addDoc, collection, deleteDoc, doc, query, orderBy, where} from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Columns, Card, Container, Image } from 'react-bulma-components';
@@ -14,7 +14,7 @@ import "react-datepicker/dist/react-datepicker.css"
 
 function Journal({ isAuth }) {
   const [postLists, setPostList] = useState([]);
-  const postsCollectionRef = collection(db, "bobaPosts");
+  const postsCollectionRef = query(collection(db, "bobaPosts"),orderBy("timestamp", "desc"));
   let navigate = useNavigate();
   useEffect(() => {
     const getPosts = async () => {
@@ -66,7 +66,7 @@ function Journal({ isAuth }) {
                 existedDates[formatPostTime] = 1;
                 dateInd = 0;
               };
-              console.log(formatPostTime+'-'+dateInd);
+              // console.log(formatPostTime+'-'+dateInd);
               return (
                   
                     <Card key={idx} class="box" id={formatPostTime+'-'+dateInd}>
