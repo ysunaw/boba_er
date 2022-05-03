@@ -10,6 +10,7 @@ import ice from '../img/Cooling.png';
 import dri from '../img/Cup.png';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
+// import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 function Journal({ isAuth }) {
   const [postLists, setPostList] = useState([]);
@@ -30,16 +31,24 @@ function Journal({ isAuth }) {
   }, []);
 
   const [startDate, setStartDate] = useState(new Date());
+  
   const dbDates = {};
+  const existedDates = {};
+  let dateInd = 0;
   postLists.map((post) => {
     const postTime = new Date(post.timestamp);
-    dbDates[postTime.getFullYear()+'/'+postTime.getMonth()+'/'+postTime.getDate()] = 1;
+    dbDates[postTime.getFullYear()+'-'+postTime.getMonth()+'-'+postTime.getDate()] = 1;
   })
   const enableDate = (date) => {
-    const day = date.getDate();
-    const month =  date.getMonth();
-    const year = date.getFullYear();
-    return year+'/'+month+'/'+day in dbDates;
+    // const day = date.getDate();
+    // const month =  date.getMonth();
+    // const year = date.getFullYear();
+    return date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate() in dbDates;
+  };
+  const onDateChange = (date) =>{
+    setStartDate(date);
+    const formatDate = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate()+'-0';
+    document.getElementById(formatDate).scrollIntoView();
   };
 
   return (
@@ -48,42 +57,51 @@ function Journal({ isAuth }) {
         <Container>
           <Columns>
           <Columns.Column className="is-two-thirds" >
-            {postLists.map((post) => {
+            {postLists.map((post,idx) => {
               const postTime = new Date(post.timestamp);
+              const formatPostTime = postTime.getFullYear()+'-'+postTime.getMonth()+'-'+postTime.getDate();
+              if (formatPostTime in existedDates) {
+                dateInd++;
+              } else {
+                existedDates[formatPostTime] = 1;
+                dateInd = 0;
+              };
+              console.log(formatPostTime+'-'+dateInd);
               return (
-                
-                  <Card class="box">
-                    <Columns>
-                      <Columns.Column className="is-2 date-indicator">
-                        <p class="date">{postTime.getDate()}</p>
-                        <p class="month">{postTime.toLocaleString('en-US', {month: 'short'})}</p>
-                      </Columns.Column>
+                  
+                    <Card key={idx} class="box" id={formatPostTime+'-'+dateInd}>
+                        <Columns>
+                          <Columns.Column className="is-2 date-indicator">
+                            <p class="date">{postTime.getDate()}</p>
+                            <p class="month">{postTime.toLocaleString('en-US', {month: 'short'})}</p>
+                          </Columns.Column>
 
-                      <Columns.Column className="is-2 boba-card">
-                        <p>LOCATION</p>
-                        <p>DRINK</p>
-                        <p>SUGAR</p>
-                        <p>ICE</p>
-                        <p>REVIEW</p>
-                      </Columns.Column>
-                      <Columns.Column className="boba-card">
-                        <p><img width="16" height="16" src={loc}></img> {post.bobaStore}</p>
-                        <p><img width="16" height="16" src={dri}></img> {post.drinkName}</p>
-                        <p><img width="16" height="16" src={sug}></img> {post.sugarLevel}</p>
-                        <p><img width="16" height="16" src={ice}></img> {post.iceLevel}</p>
-                        <p><img width="16" height="16" src={rev}></img> demo review</p>
-                      </Columns.Column>
-                    </Columns>
-                  </Card>
+                          <Columns.Column className="is-2 boba-card">
+                            <p>LOCATION</p>
+                            <p>DRINK</p>
+                            <p>SUGAR</p>
+                            <p>ICE</p>
+                            <p>REVIEW</p>
+                          </Columns.Column>
+                          <Columns.Column className="boba-card">
+                            <p><img width="16" height="16" src={loc}></img> {post.bobaStore}</p>
+                            <p><img width="16" height="16" src={dri}></img> {post.drinkName}</p>
+                            <p><img width="16" height="16" src={sug}></img> {post.sugarLevel}</p>
+                            <p><img width="16" height="16" src={ice}></img> {post.iceLevel}</p>
+                            <p><img width="16" height="16" src={rev}></img> demo review</p>
+                          </Columns.Column>
+                        </Columns>
+                    </Card>
+
                 
               )
             })}
             </Columns.Column>
             <Columns.Column>
             <DatePicker
-              // todayButton="Today"
+              todayButton="Today"
               selected={startDate}
-              onChange={(date) => setStartDate(date)}
+              onChange = {onDateChange}
               maxDate={new Date()}
               filterDate={enableDate}
               inline
