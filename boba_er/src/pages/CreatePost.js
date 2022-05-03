@@ -38,7 +38,7 @@ function CreatePost({ isAuth }) {
     localStorage.setItem('iceLevel', iceLevel);
     localStorage.setItem('topping',topping);
 
-    navigate("/Createreview");
+    navigate("/createreview");
   };
 
   useEffect(() => {
@@ -101,7 +101,7 @@ function CreatePost({ isAuth }) {
                         type="text"
                         placeholder="ICE LEVEL"
                         onChange={(event) => {
-                          setSugarLevel(event.target.value);
+                          setIceLevel(event.target.value);
                         }}>
                           <option value="default">DEFAULT ICE LEVEL</option>
                           <option value="0">0%</option>

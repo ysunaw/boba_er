@@ -3,7 +3,7 @@ import { getDocs, addDoc, collection, deleteDoc, doc } from "firebase/firestore"
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Columns, Card, Container } from 'react-bulma-components';
-import loc from '../img/Location.png';
+import rev from '../img/rev.png';
 import dri from '../img/Cup.png';
 import DatePicker from "react-datepicker";
 
@@ -34,32 +34,25 @@ const Review = (isAuth) => {
         <Container>
           <Columns>
           <Columns.Column className="is-two-thirds" >
-          <Card class="box">
-                    <Columns>
-
-                      <Columns.Column className="is-3 boba-card">
-                        <p>REVIEW</p>
-                        <p>COMMENT</p>
-                      </Columns.Column>
-                      <Columns.Column className="boba-card">
-                        <p><img width="16" height="16" src={loc}></img> Sample</p>
-                        <p><img width="16" height="16" src={dri}></img> Sample comment</p>
-                      </Columns.Column>
-                    </Columns>
-                  </Card>
           {postLists.map((post) => {
               return (
                 
                   <Card class="box">
-                    <Columns>
+                    <h1>Comment from: {post.author.name}</h1>
 
+                    <p>Drink <img width="16" height="16" src={dri}></img> {post.drink}</p>
+                    <br />
+                    <Columns>
+                    
                       <Columns.Column className="is-3">
                         <p>REVIEW</p>
                         <p>COMMENT</p>
                       </Columns.Column>
                       <Columns.Column>
-                        <p><img width="16" height="16" src={loc}></img> {post.rating}</p>
-                        <p><img width="16" height="16" src={dri}></img> {post.comment}</p>
+                      
+                        <p><img width="16" height="16" src={dri}></img> {post.rating}</p>
+                        <p><img width="16" height="16" src={rev}></img> {post.comment}</p>
+                        
                       </Columns.Column>
                     </Columns>
                   </Card>
@@ -67,7 +60,7 @@ const Review = (isAuth) => {
               })}
             </Columns.Column>
             <Columns.Column>
-              <DatePicker inline></DatePicker>
+        
             </Columns.Column>
           </Columns>
         </Container>

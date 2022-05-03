@@ -6,6 +6,8 @@ import { Form, Card, Button, Container } from 'react-bulma-components';
 
 
 function CreateReview({isAuth}) { 
+  const [drink, setDrink] = useState(localStorage.getItem("drinkName"));
+
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
 
@@ -13,11 +15,12 @@ function CreateReview({isAuth}) {
   let navigate = useNavigate();
   const createReview = async () => {
     await addDoc(postsCollectionRef, {
+      drink,
       rating,
       comment,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
-    navigate("/review");
+    navigate("/journal");
   };
 
 

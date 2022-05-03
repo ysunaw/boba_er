@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { getDocs, addDoc, collection, deleteDoc, doc } from "firebase/firestore";
-// import { db, auth } from "../firebase-config";
 import { getAuth, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 import { Container, Button, Card, Form } from 'react-bulma-components';
 
@@ -24,15 +22,6 @@ const UserInfo = (Auth) => {
     // sign out function 
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
-    updateProfile(auth.currentUser, {
-      displayName: "Jane Q. User", 
-    }).then(() => {
-      // Profile updated!
-      // ...
-    }).catch((error) => {
-      // An error occurred
-      // ...
-    });
         
     const signUserOut = () => {
       signOut(auth).then(() => {
