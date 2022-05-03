@@ -20,7 +20,7 @@ const Review = (isAuth) => {
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
-  });
+  },[]);
 
   useEffect(() => {
     if (!isAuth) {
