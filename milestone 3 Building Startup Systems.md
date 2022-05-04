@@ -16,18 +16,18 @@ We used firestore and defined two set of collections: bobaPosts and bobaReviews.
 
 ### bobaPosts
 
-```json
+```
 // bobaPosts data model
 // each document represents an entry in the journal added by the user 
 {
 	bobaStore:"boba store", 	// boba shop name
   drinkName:"boba drink",		// boba drink name
-  sugarLevel:"25", 					// percentage of sugar in the drink
-	iceLevel:"50", 						// percentage of ice in the drink
-  topping:"taro ball"				// topping for the drink
+  sugarLevel:"25", 			// percentage of sugar in the drink
+	iceLevel:"50", 			// percentage of ice in the drink
+  topping:"taro ball"			// topping for the drink
   author: { 
-  	name: "John Doe", 			// display name for the person submitting
-  	id: "123" 							// user id for the person submitting 
+  	name: "John Doe", 		// display name for the person submitting
+  	id: "123" 			// user id for the person submitting 
 	},
 }
 ```
@@ -38,16 +38,16 @@ Screenshot of bobaPosts collection
 
 ### bobaReviews
 
-```json
+```
 // bobaReviews data model
 // each document represents a review the user made
 {
   drink:"boba drink", 			// boba drink name
-  rating:"5",								// a score from 0 - 5 given by the user
-  comment:"Great!"					// comment made by the user
+  rating:"5",				// a score from 0 - 5 given by the user
+  comment:"Great!"			// comment made by the user
   author: { 
-  	name: "John Doe", 			// display name for the person submitting
-  	id: "123" 							// user id for the person submitting 
+  	name: "John Doe", 		// display name for the person submitting
+  	id: "123" 			// user id for the person submitting 
 	},
 }
 ```
