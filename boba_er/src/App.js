@@ -1,7 +1,6 @@
 import React from "react"; 
 import './App.css';
 import 'bulma/css/bulma.min.css';
-import { Button, Navbar, Section } from 'react-bulma-components';
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
 import Login from "./pages/Login";
@@ -10,6 +9,7 @@ import Home from './pages/Home';
 import Journal from './pages/Journal';
 import CreateReview from './pages/CreateReview';
 import Review from './pages/Review';
+import UserInfo from './pages/UserInfo';
 
 import { useState } from "react";
 import { signOut } from "firebase/auth";
@@ -49,6 +49,7 @@ function App() {
             <Route path="/createreview" element={<CreateReview isAuth={isAuth} />} />
             <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
             <Route path="/review" element={<Review isAuth={isAuth} />} />
+            <Route path="/user" element={<UserInfo isAuth={isAuth} /> }/>
 
 
         </Routes>

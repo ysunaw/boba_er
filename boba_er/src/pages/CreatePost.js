@@ -3,9 +3,9 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Form, Card, Button, Container, Icon, Columns } from 'react-bulma-components';
-import Cooling from '../img/Cooling.png';
 
 function CreatePost({ isAuth }) {
+
   const [bobaStore, setBobaStore] = useState("");
   const [drinkName, setDrinkName] = useState("");
   const [sugarLevel, setSugarLevel] = useState("");
@@ -31,8 +31,14 @@ function CreatePost({ isAuth }) {
       iceLevel,
       topping,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      timestamp: Date.now(),
     });
-    navigate("/Journal");
+    localStorage.setItem('drinkName', drinkName);
+    localStorage.setItem('sugarLevel', sugarLevel);
+    localStorage.setItem('iceLevel', iceLevel);
+    localStorage.setItem('topping',topping);
+
+    navigate("/createreview");
   };
 
   useEffect(() => {
@@ -57,9 +63,7 @@ function CreatePost({ isAuth }) {
                     placeholder="TYPE IN THE BOBA TEA STORE"
                     onChange={(event) => {
                       setBobaStore(event.target.value);
-                    }} >
-
-                  </Form.Input>
+                    }} />
                 </Form.Control>
               </Form.Field>
               <Form.Field>
@@ -78,16 +82,35 @@ function CreatePost({ isAuth }) {
                   <Form.Label>What sugar & ice level did you get? </Form.Label>
                   <Columns>
                     <Columns.Column>
-                      <Form.Input
+                      <Form.Select
                         type="text"
                         placeholder="SUGAR LEVEL"
                         onChange={(event) => {
                           setSugarLevel(event.target.value);
-                        }} >
-                      </Form.Input></Columns.Column>
-                    <Columns.Column><Form.Input type="text" placeholder="ICE LEVEL" onChange={(event) => {
-                      setIceLevel(event.target.value);
-                    }} ></Form.Input></Columns.Column>
+                        }}>
+                          <option value="default">DEFAULT SUGAR LEVEL</option>
+                          <option value="0">0%</option>
+                          <option value="25">25% (Lite)</option>
+                          <option value="50">50% (Half)</option>
+                          <option value="75">75% </option>
+                          <option value="100">100% (Full)</option>
+                        </Form.Select>
+                        </Columns.Column>
+                        <Columns.Column>
+                      <Form.Select
+                        type="text"
+                        placeholder="ICE LEVEL"
+                        onChange={(event) => {
+                          setIceLevel(event.target.value);
+                        }}>
+                          <option value="default">DEFAULT ICE LEVEL</option>
+                          <option value="0">0%</option>
+                          <option value="25">25% (Lite)</option>
+                          <option value="50">50% (Half)</option>
+                          <option value="75">75% </option>
+                          <option value="100">100% (Full)</option>
+                        </Form.Select>
+                        </Columns.Column>
                   </Columns>
                 </Form.Control>
               </Form.Field>
@@ -111,7 +134,7 @@ function CreatePost({ isAuth }) {
                       <input class="file-input" type="file" name="resume"></input>
                       <span class="file-cta">
                         <span class="file-label">
-                          Choose a file…
+                          CHOOSE A FILE
                         </span>
                       </span>
                       <span class="file-name">
@@ -124,7 +147,7 @@ function CreatePost({ isAuth }) {
 
             </form>
           </Card.Content>
-          <Button onClick={createPost}>Submit</Button>
+          <Button onClick={createPost}>SUBMIT</Button>
 
         </Card>
       </Container>
