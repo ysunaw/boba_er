@@ -129,17 +129,17 @@ Our page was loaded in 5ms.
 <img src="/Users/ymm/Library/Application Support/typora-user-images/Screen Shot 2022-05-03 at 3.48.47 AM.png" alt="Screen Shot 2022-05-03 at 3.48.47 AM" style="zoom:50%;" />
 
 **How much data was transferred?**
-
+It depends on how reviews and jounral was uploaded by the user. We do understand that as users input an increasing number of reviews, our current algorithm will return whatever they have inputed in without doing any filtering, which could slow day app performance. In the future, we may only load 20 reviews at a time so that the app can reach a consistent performance over the time. 
 
 
 ### Measuring backend performance
 
 **How many API calls did you receive and how long does it take to respond?**
-
+since we used react, technically, we do not have backend. According to Chrome performance function, it took roughly 550.0 ms to load home page, 733.3 ms to load journal page, 750.4 ms to load review page, 650.0 ms to load user page.
 
 
 **How long did your function take to run?**
-
+We are unable to test it out due to react setup.
 
 
 **Did you see any errors?** 
